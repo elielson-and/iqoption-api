@@ -1,16 +1,20 @@
-FROM python:3.7
 
-# Define o diretório de trabalho
+FROM python:3.7.2
+
+# Defines default work directory inside the container
 WORKDIR /app
 
-# Copia o arquivo requirements.txt para o container
+# Copy the requirements file to container workspace
 COPY requirements.txt .
 
-# Instala as dependências especificadas em requirements.txt
+# Update packages inside container (Debian distribuition)
+RUN apt-get update && apt-get install -y nano curl
+
+# install project dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia todo o código-fonte para o diretório de trabalho
-COPY . .
+# Open a door to expose the server outside the machine
+#EXPOSE 8000
 
-# Executa o script principal
-CMD ["python", "main.py"]
+# Init container Shell
+CMD ["bash"]

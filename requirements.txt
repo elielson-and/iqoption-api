@@ -1,1 +1,6 @@
-iqoptionapi==4.0.2
+pylint
+requests
+websocket-client==0.56
+pandas
+numpy
+colorama
